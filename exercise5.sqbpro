@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="exercise5.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure pragmas browser query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="735"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Pieces" custom_title="0" dock_id="1" table="4,6:mainPieces"/><dock_state state="000000ff00000000fd0000000100000002000003ce000002acfc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000000003ce0000015c00ffffff000003ce0000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Pieces" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="36"/><column index="2" value="70"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="create tables">DROP TABLE IF EXISTS Pieces;
+DROP TABLE IF EXISTS Providers;
+DROP TABLE IF EXISTS Provides;
+
+CREATE TABLE Pieces (
+	Code INTEGER NOT NULL,
+	Name TEXT NOT NULL,
+	PRIMARY KEY (Code)
+);
+
+CREATE TABLE Providers (
+	Code VARCHAR(40) NOT NULL,
+	Name TEXT NOT NULL,
+	PRIMARY KEY (Code)
+);
+
+CREATE TABLE Provides (
+	Piece INTEGER,
+	Provider VARCHAR(40),
+	Price INTEGER NOT NULL,
+	PRIMARY KEY (Piece, Provider)
+);</sql><sql name="populate tables">INSERT INTO Providers (Code, Name) VALUES 
+('HAL', 'Clarke Enterprises'),
+('RBT', 'Susan Calvin Corp.'),
+('TNBC', 'Skellington Supplies');
+
+INSERT INTO Pieces (Code, Name) VALUES
+(1, 'Sprocket'),
+(2, 'Screw'),
+(3, 'Nut'),
+(4, 'Bolt');
+
+INSERT INTO Provides (Piece, Provider, Price) VALUES
+(1, 'HAL', 10),
+(1, 'RBT', 15),
+(2, 'HAL', 20),
+(2, 'RBT', 15),
+(2, 'TNBC', 14),
+(3, 'RBT', 50),
+(3, 'TNBC', 45), 
+(4, 'HAL', 5),
+(4, 'RBT', 7);</sql><sql name="exercises 5*">-- 5.1 Select the name of all the pieces. 
+-- SELECT Name FROM Pieces;
+
+-- 5.2  Select all the providers' data. 
+-- SELECT * FROM Providers;
+
+-- 5.3 Obtain the average price of each piece (show only the piece code and the average price).
+-- SELECT Piece, AVG(Price) FROM Provides GROUP BY Piece;
+
+-- 5.4  Obtain the names of all providers who supply piece 1.
+-- SELECT Name FROM Providers JOIN Provides ON Provides.Provider = Providers.Code WHERE Provides.Piece = 1;
+
+-- 5.5 Select the name of pieces provided by the provider with code &quot;HAL&quot;.
+-- SELECT Name FROM Provides JOIN Pieces ON Provides.Piece = Pieces.Code WHERE Provider = 'HAL';
+
+-- 5.6 Add an entry to the database to indicate that &quot;Skellington Supplies&quot; (code &quot;TNBC&quot;) will provide sprockets (code &quot;1&quot;) for 15 cents each.
+-- INSERT INTO Provides (Piece, Provider, Price) VALUES (1, 'TNBC', 15);
+
+-- 5.7 For each piece, find the most expensive offering of that piece and include the piece name, provider name, and price 
+--(OPTIONAL: As there could be more than one provider who supply the same piece at the most expensive price, 
+-- show all providers who supply at the most expensive price).
+-- SELECT Pieces.name Piece, Providers.name Provider, MAX(Price) Price FROM Pieces 
+-- JOIN Provides ON Pieces.Code = Provides.Piece
+-- JOIN Providers ON Providers.Code = Provides.Provider
+-- GROUP BY Piece;
+
+-- SELECT Pieces.name Piece, Providers.name Provider, Price, MP_table.max_price FROM Pieces 
+-- JOIN Provides ON Pieces.Code = Provides.Piece
+-- JOIN Providers ON Providers.Code = Provides.Provider
+-- JOIN (
+--	SELECT Piece, MAX(Price) max_price FROM Provides GROUP BY Piece
+-- ) AS MP_table ON MP_table.Piece = Pieces.Code
+-- WHERE Pieces.Code = Provides.Piece AND Provides.Price = MP_table.max_price;
+
+-- 5.8 Increase all prices by one cent.
+-- UPDATE Provides SET Price = Price + 1;
+
+-- 5.9 Update the database to reflect that &quot;Susan Calvin Corp.&quot; (code &quot;RBT&quot;) will not supply bolts (code 4).
+-- DELETE FROM Provides WHERE Piece = 4 AND Provider = 'RBT';
+
+-- 5.10 Update the database to reflect that &quot;Susan Calvin Corp.&quot; (code &quot;RBT&quot;) will not supply any pieces (the provider should still remain in the database).
+-- DELETE FROM Provides WHERE Provider = 'RBT';</sql><current_tab id="2"/></tab_sql></sqlb_project>
