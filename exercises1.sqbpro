@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/emily/Documents/Code Academy/data/notes/data spikes/SQL - Intro + Join/CAB_students.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1228"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="cohorts" custom_title="0" dock_id="4" table="4,7:maincohorts"/><dock_state state="000000ff00000000fd0000000100000002000001de00000211fc0100000004fb000000160064006f0063006b00420072006f00770073006500310100000000000002490000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500330100000000000001dd0000000000000000fb000000160064006f0063006b00420072006f00770073006500340100000000000001de0000015c00ffffff000001de0000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="cohorts" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="29"/><column index="2" value="148"/><column index="3" value="85"/><column index="4" value="85"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="create tables">CREATE TABLE IF NOT EXISTS Manufacturers (
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="exercises1.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="883"/><column_width id="4" width="0"/><expanded_item id="1" parent="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Products" custom_title="0" dock_id="4" table="4,8:mainProducts"/><dock_state state="000000ff00000000fd00000001000000020000034900000262fc0100000004fb000000160064006f0063006b00420072006f00770073006500310100000000000002490000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500330100000000000001dd0000000000000000fb000000160064006f0063006b00420072006f00770073006500340100000000000003490000012f00ffffff000003490000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Manufacturers" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="49"/><column index="2" value="124"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Products" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="49"/><column index="2" value="124"/><column index="3" value="49"/><column index="4" value="117"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="create tables">CREATE TABLE IF NOT EXISTS Manufacturers (
   Code INTEGER,
   Name TEXT NOT NULL,
   PRIMARY KEY (Code)
@@ -26,23 +26,82 @@ INSERT INTO Products(Code,Name,Price,Manufacturer) VALUES(6,'DVD drive',180,2);
 INSERT INTO Products(Code,Name,Price,Manufacturer) VALUES(7,'CD drive',90,2);
 INSERT INTO Products(Code,Name,Price,Manufacturer) VALUES(8,'Printer',270,3);
 INSERT INTO Products(Code,Name,Price,Manufacturer) VALUES(9,'Toner cartridge',66,3);
-INSERT INTO Products(Code,Name,Price,Manufacturer) VALUES(10,'DVD burner',180,2);</sql><sql name="exercise 1">-- SELECT Name FROM Products;
--- SELECT Name, Price FROM Products;
--- SELECT Name FROM Products WHERE Price &lt;= 200;
--- SELECT * FROM Products WHERE Price BETWEEN 60 AND 120;
--- SELECT Name, Price * 100 FROM Products;
--- SELECT AVG(Price) FROM Products;
--- SELECT AVG(Price) FROM Products WHERE Code = 2;
--- SELECT COUNT(*) FROM Products WHERE Price &gt; 180;
--- SELECT Name, Price FROM Products WHERE Price &gt;= 180 ORDER BY Price DESC, Name ASC;
--- SELECT * FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code;
--- SELECT Products.name, Price, Manufacturers.name FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code;
--- SELECT AVG(Price), Manufacturers.Code FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code GROUP BY Manufacturers.Code;
--- SELECT AVG(Price), Manufacturers.Name FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code GROUP BY Manufacturers.Code;
--- SELECT AVG(Price), Manufacturers.Name FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code GROUP BY Manufacturers.Code HAVING AVG(Price) &gt;= 150;
--- SELECT Name, MIN(Price) Price FROM Products;
--- SELECT Manufacturers.Name, MAX(Price) Price FROM Manufacturers JOIN Products ON Manufacturers.Code = Products.Manufacturer GROUP BY Products.Manufacturer;
--- INSERT INTO (Code, Name, Price, Manufacturer) VALUES(11, 'Loudspeaker', 70, 2);
--- UPDATE Products SET Name = 'Laser Printer' WHERE Code = 8;
--- UPDATE Products SET Price = Products.Price * 0.9;
--- UPDATE Products SET Price = Price * 0.9 WHERE Price &gt;= 120;</sql><current_tab id="2"/></tab_sql></sqlb_project>
+INSERT INTO Products(Code,Name,Price,Manufacturer) VALUES(10,'DVD burner',180,2);</sql><sql name="exercise 1*">-- 1.1 Select the names of all the products in the store.
+
+SELECT Name FROM Products;
+
+-- 1.2 Select the names and the prices of all the products in the store.
+
+SELECT Name, Price FROM Products;
+
+-- 1.3 Select the name of the products with a price less than or equal to $200.
+
+SELECT Name FROM Products WHERE Price &lt;= 200;
+
+-- 1.4 Select all the products with a price between $60 and $120.
+
+SELECT * FROM Products WHERE Price BETWEEN 60 AND 120;
+
+-- 1.5 Select the name and price in cents (i.e., the price must be multiplied by 100).
+
+SELECT Name, Price * 100 FROM Products;
+
+-- 1.6 Compute the average price of all the products.
+
+SELECT AVG(Price) FROM Products;
+
+-- 1.7 Compute the average price of all products with manufacturer code equal to 2.
+
+SELECT AVG(Price) FROM Products WHERE Code = 2;
+
+-- 1.8 Compute the number of products with a price larger than or equal to $180.
+
+SELECT COUNT(*) FROM Products WHERE Price &gt; 180;
+
+-- 1.9 Select the name and price of all products with a price larger than or equal to $180, and sort first by price (in descending order), and then by name (in ascending order).
+
+SELECT Name, Price FROM Products WHERE Price &gt;= 180 ORDER BY Price DESC, Name ASC;
+
+-- 1.10 Select all the data from the products, including all the data for each product's manufacturer.
+
+SELECT * FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code;
+
+-- 1.11 Select the product name, price, and manufacturer name of all the products.
+
+SELECT Products.name, Price, Manufacturers.name FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code;
+
+-- 1.12 Select the average price of each manufacturer's products, showing only the manufacturer's code.
+
+SELECT AVG(Price), Manufacturers.Code FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code GROUP BY Manufacturers.Code;
+
+-- 1.13 Select the average price of each manufacturer's products, showing the manufacturer's name.
+
+SELECT AVG(Price), Manufacturers.Name FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code GROUP BY Manufacturers.Code;
+
+-- 1.14 Select the names of manufacturer whose products have an average price larger than or equal to $150.
+
+SELECT AVG(Price), Manufacturers.Name FROM Products JOIN Manufacturers ON Products.Manufacturer = Manufacturers.Code GROUP BY Manufacturers.Code HAVING AVG(Price) &gt;= 150;
+
+-- 1.15 Select the name and price of the cheapest product.
+
+SELECT Name, MIN(Price) Price FROM Products;
+
+-- 1.16 Select the name of each manufacturer along with the name and price of its most expensive product.
+
+SELECT Manufacturers.Name, MAX(Price) Price FROM Manufacturers JOIN Products ON Manufacturers.Code = Products.Manufacturer GROUP BY Products.Manufacturer;
+
+-- 1.17 Add a new product: Loudspeakers, $70, manufacturer 2.
+
+INSERT INTO (Code, Name, Price, Manufacturer) VALUES(11, 'Loudspeaker', 70, 2);
+
+-- 1.18 Update the name of product 8 to &quot;Laser Printer&quot;.
+
+UPDATE Products SET Name = 'Laser Printer' WHERE Code = 8;
+
+-- 1.19 Apply a 10% discount to all products.
+
+UPDATE Products SET Price = Products.Price * 0.9;
+
+-- 1.20 Apply a 10% discount to all products with a price larger than or equal to $120.
+UPDATE Products SET Price = Price * 0.9 WHERE Price &gt;= 120;
+</sql><current_tab id="2"/></tab_sql></sqlb_project>
