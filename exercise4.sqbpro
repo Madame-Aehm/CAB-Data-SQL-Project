@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="exercise4.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure pragmas browser query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="713"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Movies" custom_title="0" dock_id="10" table="4,6:mainMovies"/><dock_state state="000000ff00000000fd00000001000000020000034900000262fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000000003ce0000000000000000fb000000180064006f0063006b00420072006f007700730065003100300100000000000003490000012f00ffffff000003490000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="MovieTheaters" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="49"/><column index="2" value="85"/><column index="3" value="56"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Movies" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="49"/><column index="2" value="187"/><column index="3" value="61"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="create tables">DROP TABLE IF EXISTS Movies;
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="exercise4.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure pragmas browser query" current="2"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="860"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="MovieTheaters" custom_title="0" dock_id="10" table="4,13:mainMovieTheaters"/><dock_state state="000000ff00000000fd0000000100000002000004f400000260fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000000003ce0000000000000000fb000000180064006f0063006b00420072006f007700730065003100300100000000000004f40000012f00ffffff000004f40000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="MovieTheaters" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="49"/><column index="2" value="85"/><column index="3" value="56"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Movies" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="49"/><column index="2" value="187"/><column index="3" value="61"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="create tables">DROP TABLE IF EXISTS Movies;
 DROP TABLE IF EXISTS MovieTheaters;
 
 CREATE TABLE IF NOT EXISTS Movies (
 	Code INTEGER,
-	Title VARCHAR(255) NOT NULL,
-	Rating VARCHAR(255),
+	Title TEXT NOT NULL,
+	Rating TEXT,
 	PRIMARY KEY (Code)
 );
 
 CREATE TABLE IF NOT EXISTS MovieTheaters (
 	Code INTEGER,
-	Name VARCHAR(255) NOT NULL,
+	Name TEXT NOT NULL,
 	Movie INTEGER,
 	PRIMARY KEY (Code)
 );</sql><sql name="populate tables">INSERT INTO Movies (Code, Title, Rating) VALUES 
@@ -30,38 +30,38 @@ INSERT INTO MovieTheaters (Code, Name, Movie) VALUES
 (4, 'Royale', 6),
 (5, 'Paraiso', 3),
 (6, 'Nikelodeon', NULL);</sql><sql name="exercise 4*">-- 4.1 Select the title of all movies.
--- SELECT title FROM Movies;
+SELECT title FROM Movies;
 
 -- 4.2 Show all the distinct ratings in the database.
--- SELECT Rating FROM Movies GROUP BY Rating;
+SELECT Rating FROM Movies GROUP BY Rating;
 
 -- 4.3 Show all unrated movies.
--- SELECT * FROM Movies WHERE Rating ISNULL;
+SELECT * FROM Movies WHERE Rating ISNULL;
 
 -- 4.4 Select all movie theatres that are not currently showing a movie.
--- SELECT * FROM MovieTheaters WHERE Movie ISNULL;
+SELECT * FROM MovieTheaters WHERE Movie ISNULL;
 
 -- 4.5 Select all data from all movie theaters and, additionally, the data from the movie that is being shown in the theater (if one is being shown).
--- SELECT * FROM MovieTheaters LEFT JOIN Movies ON MovieTheaters.Movie = Movies.Code;
+SELECT * FROM MovieTheaters LEFT JOIN Movies ON MovieTheaters.Movie = Movies.Code;
 
 -- 4.6 Select all data from all movies and, if that movie is being shown in a theater,, show the data from the theater.
 SELECT * FROM Movies LEFT JOIN MovieTheaters ON Movies.Code = MovieTheaters.Movie;
 
 -- 4.7 Show the titles of movies not currently being shown in any theaters.
--- SELECT Title FROM Movies LEFT JOIN MovieTheaters ON Movies.Code = MovieTheaters.Movie WHERE MovieTheaters.name ISNULL;
+SELECT Title FROM Movies LEFT JOIN MovieTheaters ON Movies.Code = MovieTheaters.Movie WHERE MovieTheaters.name ISNULL;
 
 -- 4.8 Add the unrated movie &quot;One, Two, Three&quot;.
--- INSERT INTO Movies (Code, Title, Rating) VALUES (9, 'One, Two, Three', NULL);
+INSERT INTO Movies (Code, Title, Rating) VALUES (9, 'One, Two, Three', NULL);
 
 -- 4.9 Set the rating of all unrated movies to &quot;G&quot;.
--- UPDATE Movies SET Rating = 'G' WHERE Rating ISNULL;
+UPDATE Movies SET Rating = 'G' WHERE Rating ISNULL;
 
 -- 4.10 Remove movie theaters projecting movies rated &quot;NC-17&quot;.
--- DELETE FROM MovieTheaters WHERE Code IN (
---	SELECT MovieTheaters.Code 
---	FROM MovieTheaters JOIN Movies 
---	ON Movies.Code = MovieTheaters.Movie 
---	WHERE Rating = 'NC-17'
--- );
+DELETE FROM MovieTheaters WHERE Code IN (
+	SELECT MovieTheaters.Code 
+	FROM MovieTheaters JOIN Movies 
+	ON Movies.Code = MovieTheaters.Movie 
+	WHERE Rating = 'NC-17'
+);
 
 </sql><current_tab id="2"/></tab_sql></sqlb_project>

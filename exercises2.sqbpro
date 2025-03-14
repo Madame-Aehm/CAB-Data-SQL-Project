@@ -1,34 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="exercises2.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure pragmas browser query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="982"/><column_width id="4" width="0"/><expanded_item id="1" parent="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Departments" custom_title="0" dock_id="3" table="4,11:mainDepartments"/><dock_state state="000000ff00000000fd0000000100000002000003cd000002ebfc0100000003fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000000003cd0000000000000000fb000000160064006f0063006b00420072006f00770073006500330100000000ffffffff0000012f00ffffff000002580000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Departments" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="49"/><column index="2" value="124"/><column index="3" value="66"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="create tables">CREATE TABLE IF NOT EXISTS Departments (
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="exercises2.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure pragmas browser query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="895"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Employees" custom_title="0" dock_id="3" table="4,9:mainEmployees"/><dock_state state="000000ff00000000fd0000000100000002000004f400000260fc0100000003fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000000003cd0000000000000000fb000000160064006f0063006b00420072006f00770073006500330100000000000004f40000014100ffffff000004f40000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Departments" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="49"/><column index="2" value="55"/><column index="3" value="66"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Employees" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="78"/><column index="2" value="78"/><column index="3" value="89"/><column index="4" value="105"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="create tables">DROP TABLE Employees;
+DROP TABLE Departments;
+
+CREATE TABLE IF NOT EXISTS Departments (
   Code INTEGER,
   Name TEXT NOT NULL,
-  Budget decimal NOT NULL,
+  Budget REAL NOT NULL,
   PRIMARY KEY (Code)   
 );
 
 CREATE TABLE IF NOT EXISTS Employees (
   SSN INTEGER,
-  Name varchar(255) NOT NULL ,
-  LastName varchar(255) NOT NULL ,
+  Name TEXT NOT NULL ,
+  LastName TEXT NOT NULL ,
   Department INTEGER NOT NULL , 
   PRIMARY KEY (SSN)   
 );
-</sql><sql name="populate tables">INSERT INTO Departments(Code,Name,Budget) VALUES(14,'IT',65000);
-INSERT INTO Departments(Code,Name,Budget) VALUES(37,'Accounting',15000);
-INSERT INTO Departments(Code,Name,Budget) VALUES(59,'Human Resources',240000);
-INSERT INTO Departments(Code,Name,Budget) VALUES(77,'Research',55000);
+</sql><sql name="populate tables*">INSERT INTO Departments(Code,Name,Budget) VALUES
+(14,'IT',65000),
+(37,'Accounting',15000),
+(59,'Human Resources',240000),
+(77,'Research',55000);
 
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('123234877','Michael','Rogers',14);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('152934485','Anand','Manikutty',14);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('222364883','Carol','Smith',37);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('326587417','Joe','Stevens',37);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('332154719','Mary-Anne','Foster',14);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('332569843','George','ODonnell',77);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('546523478','John','Doe',59);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('631231482','David','Smith',77);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('654873219','Zacary','Efron',59);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('745685214','Eric','Goldsmith',59);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('845657245','Elizabeth','Doe',14);
-INSERT INTO Employees(SSN,Name,LastName,Department) VALUES('845657246','Kumar','Swamy',14);</sql><sql name="exercises2*">-- 2.1 Select the last name of all employees.
+INSERT INTO Employees(SSN,Name,LastName,Department) VALUES
+('123234877','Michael','Rogers',14),
+('152934485','Anand','Manikutty',14),
+('222364883','Carol','Smith',37),
+('326587417','Joe','Stevens',37),
+('332154719','Mary-Anne','Foster',14),
+('332569843','George','ODonnell',77),
+('546523478','John','Doe',59),
+('631231482','David','Smith',77),
+('654873219','Zacary','Efron',59),
+('745685214','Eric','Goldsmith',59),
+('845657245','Elizabeth','Doe',14),
+('845657246','Kumar','Swamy',14);</sql><sql name="exercises2*">-- 2.1 Select the last name of all employees.
 SELECT LastName FROM Employees;
 
 -- 2.2 Select the last name of all employees, without duplicates.
@@ -50,10 +55,10 @@ SELECT * FROM Employees WHERE Department IN (37, 77);
 SELECT * FROM Employees WHERE LastName LIKE 'S%';
 
 -- 2.8 Select the sum of all the departments' budgets.
-SELECT SUM(Budget) total FROM Departments;
+SELECT SUM(Budget) total_budget FROM Departments;
 
 -- 2.9 Select the number of employees in each department (you only need to show the department code and the number of employees).
-SELECT COUNT(*) AS employees, Department FROM Employees GROUP BY Department;
+SELECT Department, COUNT(*) AS Employee_Count FROM Employees GROUP BY Department;
 
 -- 2.10 Select all the data of employees, including each employee's department's data.
 SELECT * FROM Employees JOIN Departments ON Employees.Department = Departments.Code;
@@ -80,7 +85,7 @@ SELECT * FROM Departments WHERE Budget &gt; (
 
 -- 2.14 Select the names of departments with more than two employees.
 SELECT Name FROM Departments WHERE Code IN (
-	SELECT Code
+	SELECT Code
 	FROM Employees JOIN Departments 
 	ON Employees.Department = Departments.Code 
 	GROUP BY Department 
